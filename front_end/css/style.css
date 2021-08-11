@@ -90,16 +90,14 @@ body{
         margin: 100px 0px;
 }
 .banner{
-        /* position: absolute;
-        top: -350px;
-        left: -200px;
-        z-index: -1;    */    
+        position: absolute; 
+        top: -100px;       
+        z-index: -1;       
 }
 .banner img {
-        height: 100px;
-        /* width: 100%; */
         object-fit: contain;
         overflow: hidden;
+        width: 100%;
         
 }
 .articlesContainer{
