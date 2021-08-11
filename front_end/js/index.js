@@ -29,31 +29,38 @@
   -Faire une boucle sur les données
 */
 
-function article_gen(articlesContainer, image, productNamePrice, name, description, price){  
-  var articlesContainer = document.createElement("div");
-  articlesContainer.id =  "articlesContainer";
+function article_gen(parent, _image="", _name="", _price="", _description=""){  
+  var article = document.createElement("div");
+  article.id =  "articleProduct";
 
-  var image = document.createElement("img");
-  image.id =  "image";
-  article.addChild(image);
+    var image = document.createElement("img");
+    image.id =  "image";
+    image.src = _image;
+    article.addChild(image);
 
-  var productNamePrice = document.createElement("div");
-  productNamePrice.id = "productNamePrice";
-  article.addChild(productNamePrice);
-  
-  var name = document.createElement("h3");
-  nom.id =  "name";
-  productNamePrice.addChild(name);
+    var descriptionProduit = document.createElement("descriptionProduit");
+    descriptionProduit.id = "descriptionProduit";
+    article.addChild(descriptionProduit);
 
-  var price = document.createElement("span");
-  price.id =  "price";
-  productNamePrice.addChild(price);
-  
-  var description = document.createElement("p");
-  description.id =  "description";
-  article.addChild(description); 
+      var productNamePrice = document.createElement("div");
+      productNamePrice.id = "productNamePrice";
+      descriptionProduit.addChild(productNamePrice); 
 
-  articlesContainer.addChild(article);
+        var name = document.createElement("h3");
+        name.id =  "name";
+        name.innerHTML = _name;
+        productNamePrice.addChild(name);
+
+        var price = document.createElement("span");
+        price.id =  "price";
+        price.innerHTML = _price + "€"
+        productNamePrice.addChild(price);
+      
+      var description = document.createElement("p");
+      description.id =  "description";
+      article.addChild(description); 
+
+  parent.addChild(article);
 }
   
 function product(){
