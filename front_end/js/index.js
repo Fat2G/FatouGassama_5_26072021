@@ -45,7 +45,7 @@ function article_gen(articlesContainer, image, productNamePrice, name, descripti
   nom.id =  "name";
   productNamePrice.addChild(name);
 
-  var prix = document.createElement("span");
+  var price = document.createElement("span");
   price.id =  "price";
   productNamePrice.addChild(price);
   
