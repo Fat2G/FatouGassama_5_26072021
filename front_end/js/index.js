@@ -36,47 +36,69 @@ function article_gen(parent, _image="", _name="", _price="", _description=""){
     var image = document.createElement("img");
     image.id =  "image";
     image.src = _image;
-    article.addChild(image);
+    article.appendChild(image);
 
-    var descriptionProduit = document.createElement("descriptionProduit");
-    descriptionProduit.id = "descriptionProduit";
-    article.addChild(descriptionProduit);
+    var descriptionProduct = document.createElement("descriptionProduct");
+    descriptionProduct.id = "descriptionProduct";
+    article.appendChild(descriptionProduct);
 
       var productNamePrice = document.createElement("div");
       productNamePrice.id = "productNamePrice";
-      descriptionProduit.addChild(productNamePrice); 
+      descriptionProduct.appendChild(productNamePrice); 
 
         var name = document.createElement("h3");
         name.id =  "name";
         name.innerHTML = _name;
-        productNamePrice.addChild(name);
+        productNamePrice.appendChild(name);
 
         var price = document.createElement("span");
         price.id =  "price";
         price.innerHTML = _price + "€"
-        productNamePrice.addChild(price);
+        productNamePrice.appendChild(price);
       
       var description = document.createElement("p");
       description.id =  "description";
-      article.addChild(description); 
+      description.innerHTML = _description;
+      article.appendChild(description); 
 
-  parent.addChild(article);
+  parent.appendChild(article);
 }
   
-function product(){
+/* function product(){ 
+   var articleProduct = document.getElementsByClassName('articleProduct');
+  //  alert("ok");
   fetch('http://localhost:3000/api/cameras')
     .then(response => response.json)
-    .then(data => console.log(data))
+    //.then(data => console.log(data))
     .then(data => {
-      const articleProduct = document.getElementsByClassName('articleProduct');
-      /* for (let articleProduct of data){
-        articleProduct.innerHTML += `
-        <img src="${articleProduct.imageUrl}"/>`
-      } */
-      for(let articleProduct of data){
-        articleProduct.innerHTML += article_gen()
-      }
-        
+      for(let articles of data){
+        // article_gen(articleProduct, ${articles.imageURL}, ${articles.name}, ${articles.price}, ${articles.description});        
+      }        
     });
+    
+} */
+function product(){
+  var articleProduct = document.getElementById('articlesContainer');
+  console.log(articleProduct + "ok");
+
+  
+  fetch('http://localhost:3000/api/cameras')
+  .then(response => response.json())
+  .then(data => {
+    for (let article of data) {
+      article_gen(articleProduct, article.imageUrl, article.name, article.price, article.description);
+    }
+  });
+	
+  
 }
-product();
+
+
+/* fetch('http://localhost:3000/api/teddies')
+  .then(response => response.json())
+  .then(data => {
+    const articlesContainer = document.getElementById('articles');
+    for (let articles of data) {
+      articlesContainer.innerHTML += `${articles.imageURL}<br> ${articles.name} ${articles.price}<br> ${articles.description}<br>`;
+    }
+  }); */
