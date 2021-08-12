@@ -70,6 +70,7 @@ body{
 .cart:hover,
 .cart:focus{
         border: 2px solid #000;
+        cursor: pointer;
 }
 .cart i{
   margin: 0px 10px;
@@ -100,13 +101,13 @@ body{
         width: 100%;
         
 }
-.articlesContainer{
+#articlesContainer{
         margin: 30px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
 }
-.articleProduct{
+#articleProduct{
         height: 350px;
         width: 350px;
         border-radius: 20px;
@@ -115,25 +116,25 @@ body{
         grid-template-rows: 4fr 2fr;
         margin: 30px;
 }
-.articleImg{
+#image{
         width: 350px;
         height: auto;
         object-fit: cover;
         overflow: hidden;
         border-radius: 20px 20px 0px 0px;
 }
-.descriptionProduct p{
+#descriptionProduct p{
         margin-left: 15px;
 }
-.productNamePrice{
+#productNamePrice{
         display: flex;
         justify-content: space-between;
         margin: 15px;
 }
-.productNamePrice h3{
+#productNamePrice h3{
         text-transform: uppercase;
 }
-.productNamePrice span{
+#productNamePrice span{
         text-transform: uppercase;
 }
 
