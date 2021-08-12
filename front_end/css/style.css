@@ -113,7 +113,7 @@ body{
         border-radius: 20px;
         background-color: #F3E9F1;
         display: grid;
-        grid-template-rows: 4fr 2fr;
+        grid-template-rows: 2fr 1fr;
         margin: 30px;
 }
 #image{
@@ -123,16 +123,16 @@ body{
         overflow: hidden;
         border-radius: 20px 20px 0px 0px;
 }
+#name{
+        text-transform: uppercase;
+}
 #descriptionProduct p{
         margin-left: 15px;
 }
 #productNamePrice{
         display: flex;
         justify-content: space-between;
-        margin: 15px;
-}
-#productNamePrice h3{
-        text-transform: uppercase;
+        margin: 15px ;
 }
 #productNamePrice span{
         text-transform: uppercase;
