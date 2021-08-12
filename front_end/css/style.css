@@ -115,6 +115,8 @@ body{
         display: grid;
         grid-template-rows: 2fr 1fr;
         margin: 30px;
+        text-decoration: none;
+        color: #000;
 }
 #image{
         width: 350px;
@@ -136,6 +138,7 @@ body{
 }
 #productNamePrice span{
         text-transform: uppercase;
+        font-weight: bold;
 }
 
 /* Footer */
