@@ -59,7 +59,7 @@ function article_gen(parent, _image="", _name="", _price="", _description=""){
       var description = document.createElement("p");
       description.id =  "description";
       description.innerHTML = _description;
-      article.appendChild(description); 
+      descriptionProduct.appendChild(description); 
 
   parent.appendChild(article);
 }
