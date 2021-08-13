@@ -1,32 +1,32 @@
 function article_gen(parent, _image="", _name="", _price="", _description="", _id=""){  
-  var article = document.createElement("a");
+  let article = document.createElement("a");
   article.id =  "articleProduct";
   article.href = "produit.html?id="+_id;
 
-    var image = document.createElement("img");
+    let image = document.createElement("img");
     image.id =  "image";
     image.src = _image;
     article.appendChild(image);
 
-    var descriptionProduct = document.createElement("descriptionProduct");
+    let descriptionProduct = document.createElement("descriptionProduct");
     descriptionProduct.id = "descriptionProduct";
     article.appendChild(descriptionProduct);
 
-      var productNamePrice = document.createElement("div");
+      let productNamePrice = document.createElement("div");
       productNamePrice.id = "productNamePrice";
       descriptionProduct.appendChild(productNamePrice); 
 
-        var name = document.createElement("h3");
+        let name = document.createElement("h3");
         name.id =  "name";
         name.innerHTML = _name;
         productNamePrice.appendChild(name);
 
-        var price = document.createElement("span");
+        let price = document.createElement("span");
         price.id =  "price";
         price.innerHTML = _price*.01 + "€"
         productNamePrice.appendChild(price);
       
-      var description = document.createElement("p");
+      let description = document.createElement("p");
       description.id =  "description";
       description.innerHTML = _description;
       descriptionProduct.appendChild(description); 
@@ -36,7 +36,7 @@ function article_gen(parent, _image="", _name="", _price="", _description="", _i
   
 
 function product(){
-  var articleProduct = document.getElementById('articlesContainer');
+  let articleProduct = document.getElementById('articlesContainer');
   console.log(articleProduct + "ok");
 
   
