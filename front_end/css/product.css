@@ -1,0 +1,65 @@
+.navbar{
+  display: grid;
+  grid-template-columns: 80% 10% 10%;
+}
+.index{
+  margin: 0px 28px;
+}
+
+/* PRODUCT */
+#productContainer{        
+  background-color: #F3E9F1;
+  border-radius: 20px;
+  width: 60%;
+  margin: 60px auto;      
+}
+#choiceProduct{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+#productContainer img{
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px 0px 0px 20px;
+  margin: 20px;
+}
+#choiceProductDescription{
+  margin: 30px;
+}
+#choiceProductDescription h2,
+#choiceProductDescription h3,
+#choiceProductDescription h4,
+#choiceLenses{
+  margin-top: 20px; 
+}
+#choiceProductDescription h2{
+  font-size: 20px;
+  text-transform: uppercase;
+}
+#camLenses{
+  margin-left: 20px;
+  padding: 5px;
+  font-family: "Exo", sans-serif;
+  border: none;
+  border-radius: 5px;
+}
+#btnCart{
+  text-align: center;
+}
+#btnCart button{
+  margin-top: 60px;
+  text-transform: uppercase;
+  font-size: 28px;
+  background-color: #d58135;
+  background-image: linear-gradient(123deg, #d58135 0%, #a273ef 85%);
+  border-radius: 5px;
+  border: none;
+  padding: 15px;
+  transition: all 300ms ease-in-out;
+}
+#btnCart button:hover{
+  cursor: pointer;
+  box-shadow: 0px 3px 6px 2px rgba(0,0,0,0.25);
+  
+}
