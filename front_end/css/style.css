@@ -44,7 +44,7 @@ table {
         border-collapse: collapse;
         border-spacing: 0;
 }
-/* Header */
+/* HEADER */
 body{
   font-family: "Exo", sans-serif;
   font-size: 16px;
@@ -59,26 +59,32 @@ body{
   justify-content: space-between;
   background-color: #F3E9F1;
 }
-.cart{
+.cart,
+.index{
   display: flex;
   align-items: center;
-  margin: 0px 30px;
+  margin: 0px 30px 0px 0px;
   padding: 0px 10px 0px 20px;
   border: 2px solid transparent;
   transition: border 450ms ease-in-out;
 }
 .cart:hover,
-.cart:focus{
+.cart:focus,
+.index:focus,
+.index:hover{
         border: 2px solid #000;
         cursor: pointer;
 }
 .cart i{
   margin: 0px 10px;
 }
-.cart a{
+.cart a,
+.index a{
   text-decoration: none;
   color: black;
 }
+
+/* INDEX */
 .bannerContainer{
         position: relative;
         height: 300px;
@@ -98,8 +104,7 @@ body{
 .banner img {
         object-fit: contain;
         overflow: hidden;
-        width: 100%;
-        
+        width: 100%;    
 }
 #articlesContainer{
         margin: 30px;
@@ -141,7 +146,7 @@ body{
         font-weight: bold;
 }
 
-/* Footer */
+/* FOOTER */
 .footerContainer{
         background-color: #F3E9F1; 
         display: flex; 
