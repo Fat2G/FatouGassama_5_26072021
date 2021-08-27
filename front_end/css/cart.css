@@ -1,3 +1,25 @@
+#panierContainer,
+.contactFormContainer{
+  margin: 30px auto;
+  background-color: #F3E9F1;
+  width: 95%;
+  border-radius:20px;
+}
+#panier{
+  padding-top: 5px;
+  padding: 10px 15px;
+}
 #contactForm{
-  background-color: blue;
+  margin: 30px;
+}
+#contactForm input{
+  margin: 10px 5px;
+}
+#contactForm label{
+  margin: 30px 5px;
+  font-size: 16px;
+  font-family: "Exo", sans-serif;
+}
+.form-row{
+  display: flex;
 }

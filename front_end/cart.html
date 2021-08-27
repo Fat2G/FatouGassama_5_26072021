@@ -36,36 +36,53 @@
   </header>
 
   <main>
-    <div id="contactForm">
-      <form action="/" method="GET">
-        <div id="formName">        
-          <div>
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="lastName" placeholder="Nom">
-          </div>
-          <div>
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="firstName" placeholder="Prénom">
-          </div>
-        </div>
-        <div id="formAdress">        
-          <div>
-            <label for="adresse">Adresse</label>
-            <input type="text" id="adresse" name="adress" placeholder="Adresse">
-          </div>
-          <div>
-            <label for="ville">Ville</label>
-            <input type="text" id="ville" name="city" placeholder="Nom">
-          </div>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="text" id="email" name="email" placeholder="Adresse email">
-        </div>
-      </form>
-
+    <div id="panierContainer">
+      <div id="panier">
+        <table>
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Quantité</th>
+              <th>Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>          
+        </table>
+      </div>
     </div>
-    <div id="productContainer"></div>
+    <div class="contactFormContainer" >
+      <div id="erreur"></div>
+      <div id="contactForm">      
+        <form id="form" action="/" method="GET">
+          <div class="form-row">        
+            <div>
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="lastName" placeholder="Nom" required>
+            </div>
+            <div>
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="firstName" placeholder="Prénom" required>
+            </div>
+          </div>
+          <div class="form-row">        
+            <div>
+              <label for="adresse">Adresse</label>
+              <input type="text" id="adresse" name="adress" placeholder="Adresse" required>
+            </div>
+            <div>
+              <label for="ville">Ville</label>
+              <input type="text" id="ville" name="city" placeholder="Nom" required>
+            </div>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Adresse email" required>
+          </div>
+          <button type="submit" id="payBtn" value="Confirmation">Procéder au paiement</button>
+        </form>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -86,7 +103,7 @@
     </div>    
   </footer>
 
-  <script type="text/javascript" src="js/panier.js" defer></script>
+  <script type="text/javascript" src="js/cart.js" defer></script>
   
 </body>
 </html>
