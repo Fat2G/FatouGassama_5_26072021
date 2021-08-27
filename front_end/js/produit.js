@@ -8,7 +8,7 @@ Faire en sorte que le bouton ajouter au panier fonctionne
 Pour cela, tu dois enregistrer les données grâce à localstorage
 Pour stocker tes données, tu vas devoir utiliser la sérialization
 
-Les données à stocker : id du produit dans le panier + quantité
+Les données à stocker : id du produit dans le panier + quantité 
 
 Si l'utilisateur modifie la quantité, il faut mettre à jour la variable dans ton localstorage et non ajouter une nouvelle ligne
 */
@@ -34,6 +34,7 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
       divChoice.appendChild(choiceProductDescription);
 
         let title = document.createElement("h2");
+        title.id = "title";
         title.innerHTML = _name;
         choiceProductDescription.appendChild(title);
 
@@ -42,6 +43,7 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
         choiceProductDescription.appendChild(description);
 
         let price = document.createElement("h4");
+        price.id = "price";
         price.innerHTML = _price*.01+"€";
         choiceProductDescription.appendChild(price);
 
@@ -59,49 +61,62 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
           formSelect.id = "camLenses";
           choice.appendChild(formSelect);
 
-            let option1 = document.createElement("option");
-            option1.value = "choice1";
-            option1.innerHTML = _lenses[0];
-            formSelect.appendChild(option1);
-
-            let option2 = document.createElement("option");
-            option2.value = "choice2";
-            option2.innerHTML = _lenses[1];
-            formSelect.appendChild(option2);
-
-            let option3 = document.createElement("option");
-            option3.value = "choice3";
-            option3.innerHTML = _lenses[2];
-            formSelect.appendChild(option3);
-
+          for(i=0; i<_lenses.length; i++)
+          {
+            let option = document.createElement("option");
+                option.value = "choice"+i;
+                option.innerHTML = _lenses[i];
+                formSelect.appendChild(option);
+          }
+            
       let choiceBtn = document.createElement("div");
       choiceBtn.id = "btnCart";
       divChoice.appendChild(choiceBtn);
 
         let button = document.createElement("button");
         button.type = "button";
-        button.innerHTML = "Panier";
-        button.onclick = "";
+        button.id = "addCartBtn";
+        button.innerHTML = "Ajouter au panier";
+        /* creation de la fonction permettant de serializer les données et les stocker dan sle localStorage*/
+        button.onclick = function addCart(){          
+          let name = _name;
+          let img = _image;          
+          let price = _price*.01+"€";
+          let lenses = _lenses[i];
+          
+          let addPrd = {img, name, price, lenses};
+
+          /* window.localStorage stocké dans une variable */
+          const localStorage = window.localStorage;
+
+          let addCart = JSON.parse(localStorage.getItem("Cart"));
+
+          if (!addCart){
+            addCart = [];
+          }
+          /* Données du produit poussé dans le tableau */
+          addCart.push(addPrd);
+
+          localStorage.setItem("Cart", JSON.stringify(addCart));
+         
+        };
+        
+
         choiceBtn.appendChild(button);
 
   parent.appendChild(choiceProduct);
 }
-/* Trouver comment récupérer les paramètres passés en URL (GET)
+/* Récupération des paramètres passés en URL (GET)
 Grâce à la récupération du paramètre "id"
 */
 const urlParams = new URLSearchParams(window.location.search);
 
 const id = urlParams.get('id');
+console.log(id + " id ok");
 
-// Tu vas pouvoir faire un fetch sur l'API pour récupérer
-/* fetch('http://localhost:3000/api/cameras/'+id)
-.then(res => res.json())
-.then(function(res){
-  product_art(res.imageUrl, res.name, res.price, res.description, res._id);
-}); */
+// création d'un fetch sur l'API pour récupérer les informations
 function product_art(){
   let choiceProduct = document.getElementById('productContainer');
-  console.log(choiceProduct + "ok");
 
   fetch('http://localhost:3000/api/cameras/'+id)
   .then(res => res.json())
@@ -111,3 +126,7 @@ function product_art(){
 }
 /* Appel de la fonction product_art */
 product_art();
+
+/* Faire en sorte que le bouton ajouter au panier fonctionne
+Pour cela, tu dois enregistrer les données grâce à localstorage
+Pour stocker tes données, tu vas devoir utiliser la sérialization */
