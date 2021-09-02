@@ -51,24 +51,28 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
         choice.id = "choiceLenses";
         choiceProductDescription.appendChild(choice);
 
-          let formLabel = document.createElement("label")
-          formLabel.for = "camLensesChoice";
-          formLabel.innerHTML = "Objectif";
-          choice.appendChild(formLabel);
+          let divLense = document.createElement("div");
+          divLense.id = "lense";
+          choice.appendChild(divLense);
 
-          let formSelect = document.createElement("select");
-          formSelect.name = "cameraLenses";
-          formSelect.id = "camLenses";
-          choice.appendChild(formSelect);
+            let formLabel = document.createElement("label")
+            formLabel.for = "camLensesChoice";
+            formLabel.innerHTML = "Objectif";
+            divLense.appendChild(formLabel);
 
-          for(i=0; i<_lenses.length; i++)
-          {
-            let option = document.createElement("option");
-                option.value = "choice"+i;
-                option.innerHTML = _lenses[i];
-                formSelect.appendChild(option);
-          }
-            
+            let formSelect = document.createElement("select");
+            formSelect.name = "cameraLenses";
+            formSelect.id = "camLenses";
+            divLense.appendChild(formSelect);
+
+            for(i=0; i<_lenses.length; i++)
+            {
+              let option = document.createElement("option");
+                  option.value = "choice"+i;
+                  option.innerHTML = _lenses[i];
+                  formSelect.appendChild(option);
+            }
+
       let choiceBtn = document.createElement("div");
       choiceBtn.id = "btnCart";
       divChoice.appendChild(choiceBtn);
@@ -77,30 +81,29 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
         button.type = "button";
         button.id = "addCartBtn";
         button.innerHTML = "Ajouter au panier";
-        /* creation de la fonction permettant de serializer les données et les stocker dan sle localStorage*/
+        /* creation de la fonction permettant de serializer les données et les stocker dans le localStorage*/
         button.onclick = function addCart(){          
           let name = _name;
           let img = _image;          
           let price = _price*.01+"€";
           let lenses = _lenses[i];
           
-          let addPrd = {img, name, price, lenses};
+          let addPrd = {img, name, price, lenses, quantite:1};
 
           /* window.localStorage stocké dans une variable */
           const localStorage = window.localStorage;
-
-          let addCart = JSON.parse(localStorage.getItem("Cart"));
-
+          /* conversion des données json en objet javascript */
+          let addCart = JSON.parse(localStorage.getItem("caméra"));
+          /* création d'un tableau vide si addCart est null */
           if (!addCart){
             addCart = [];
           }
-          /* Données du produit poussé dans le tableau */
+          /* Ajout des données du produit au tableau */
           addCart.push(addPrd);
-
-          localStorage.setItem("Cart", JSON.stringify(addCart));
+          /* conversion des données en json */
+          localStorage.setItem("caméra", JSON.stringify(addCart));
          
-        };
-        
+        };        
 
         choiceBtn.appendChild(button);
 
@@ -127,6 +130,3 @@ function product_art(){
 /* Appel de la fonction product_art */
 product_art();
 
-/* Faire en sorte que le bouton ajouter au panier fonctionne
-Pour cela, tu dois enregistrer les données grâce à localstorage
-Pour stocker tes données, tu vas devoir utiliser la sérialization */
