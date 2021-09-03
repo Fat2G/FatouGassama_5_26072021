@@ -1,3 +1,50 @@
+/* récupération des données du localStorage */
+let addCart = JSON.parse(localStorage.getItem("caméra"));
+console.log(addCart);
+
+/* creation d'une constante relié à la div ayant l'id panier */
+const productCart = document.querySelector("#panier")
+
+/* si panier vide message qui s'affiche */
+if(addCart === null){
+  const cartEmpty = `
+  <div class="cartEmpty">
+    <h3> Le panier est vide </h3>
+  </div>
+  `;
+  productCart.innerHTML = cartEmpty;
+
+} else {
+  /* sinon lesproduits s'affichent depuis le localStorage */
+  console.log("pas vide")
+  let cartStructure = [];
+
+  for (let i = 0; i < addCart.length; i++) {
+    cartStructure = cartStructure + `
+    <div id="cartStructure">
+      <div>
+        <img src="${addCart[i].img}">    
+      </div>
+      <div>
+        <h3> ${addCart[i].name} </h3>
+      </div>
+      <div>
+        <span> ${addCart[i].price} </span>
+      </div>
+    </div>
+    `;
+    console.log(cartStructure);
+  }
+  productCart.innerHTML = cartStructure;
+  
+  // if(i === addCart.length){
+  //   /* creation de la structure html dans le panier */
+  //   productCart.innerHTML = cartStructure;
+  // }
+}
+
+
+
 /* écouteur d'évènement qui fonctionne lorsque le formulaire est envoyé*/
 document.getElementById('payBtn').addEventListener("submit", function(e){ 
 
