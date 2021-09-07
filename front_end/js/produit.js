@@ -1,19 +1,4 @@
 /*
-Trouver comment récupérer les paramètres passés en URL (GET)
-Grâce à la récupération du paramètre "id"
-Tu vas pouvoir faire un fetch sur l'API pour récupérer uniquement les informations de ce produit
-Afficher les infos du produit
-
-Faire en sorte que le bouton ajouter au panier fonctionne
-Pour cela, tu dois enregistrer les données grâce à localstorage
-Pour stocker tes données, tu vas devoir utiliser la sérialization
-
-Les données à stocker : id du produit dans le panier + quantité 
-
-Si l'utilisateur modifie la quantité, il faut mettre à jour la variable dans ton localstorage et non ajouter une nouvelle ligne
-*/
-
-/*
  Fonction qui rempli la page HTML d'après les informations récupérée de l'API grâce à l'ID
 */ 
 function product_gen(parent, _image="", _name="", _price="", _description="", _id="", _lenses="")
@@ -65,14 +50,40 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
             formSelect.id = "camLenses";
             divLense.appendChild(formSelect);
 
-            for(i=0; i<_lenses.length; i++)
-            {
-              let option = document.createElement("option");
-                  option.value = "choice"+i;
-                  option.innerHTML = _lenses[i];
-                  formSelect.appendChild(option);
-            }
+              for(i=0; i<_lenses.length; i++)
+              {
+                let option = document.createElement("option");
+                    option.value = "choice"+i;
+                    option.innerHTML = _lenses[i];
+                    formSelect.appendChild(option);
+              }
+/* TEST */
+        let choiceQtt = document.createElement("form")
+        choiceQtt.id = "choiceQtt";
+        choiceProductDescription.appendChild(choiceQtt);
 
+          let divQtt = document.createElement("div");
+          divQtt.id = "quantite";
+          choiceQtt.appendChild(divQtt); 
+          
+            let formLabelQtt = document.createElement("label")
+            formLabelQtt.for = "camQttChoice";
+            formLabelQtt.innerHTML = "Quantité";
+            divQtt.appendChild(formLabelQtt);
+
+            let formSelectQtt = document.createElement("select");
+            formSelectQtt.name = "cameraQtt";
+            formSelectQtt.id = "camQtt";
+            divQtt.appendChild(formSelectQtt);
+
+              for(i=1; i<=10; i++)
+              {
+                let optionQtt = document.createElement("option");
+                    optionQtt.value = i;
+                    optionQtt.innerHTML = i;
+                    formSelectQtt.appendChild(optionQtt);
+              }
+           
       let choiceBtn = document.createElement("div");
       choiceBtn.id = "btnCart";
       divChoice.appendChild(choiceBtn);
@@ -86,14 +97,19 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
           let name = _name;
           let img = _image;          
           let price = _price*.01+"€";
-          let lenses = _lenses[i];
-          
-          let addPrd = {img, name, price, lenses, quantite:1};
+          /* variable selectionnant l'objectif */
+          let el = document.getElementById('camLenses');
+          let lenses = el.options[el.selectedIndex].text;
+          /* variable selectionnant la quantité */
+          let qtt = document.getElementById('camQtt');
+          let quantity = qtt.options[qtt.selectedIndex].value
+          /* variable regroupant toutes les données des variables ci-dessus */
+          let addPrd = {img, name, lenses, quantity, price};
 
           /* window.localStorage stocké dans une variable */
           const localStorage = window.localStorage;
           /* conversion des données json en objet javascript */
-          let addCart = JSON.parse(localStorage.getItem("caméra"));
+          let addCart = JSON.parse(localStorage.getItem("camera"));
           /* création d'un tableau vide si addCart est null */
           if (!addCart){
             addCart = [];
@@ -101,7 +117,7 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
           /* Ajout des données du produit au tableau */
           addCart.push(addPrd);
           /* conversion des données en json */
-          localStorage.setItem("caméra", JSON.stringify(addCart));
+          localStorage.setItem("camera", JSON.stringify(addCart));
          
         };        
 
