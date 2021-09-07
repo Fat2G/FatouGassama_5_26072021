@@ -18,16 +18,16 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
       choiceProductDescription.id = "choiceProductDescription";
       divChoice.appendChild(choiceProductDescription);
 
-        let title = document.createElement("h2");
+        let title = document.createElement("h1");
         title.id = "title";
         title.innerHTML = _name;
         choiceProductDescription.appendChild(title);
 
-        let description = document.createElement("h3");
+        let description = document.createElement("h2");
         description.innerHTML = _description;
         choiceProductDescription.appendChild(description);
 
-        let price = document.createElement("h4");
+        let price = document.createElement("h3");
         price.id = "price";
         price.innerHTML = _price*.01+"€";
         choiceProductDescription.appendChild(price);
@@ -57,7 +57,7 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
                     option.innerHTML = _lenses[i];
                     formSelect.appendChild(option);
               }
-/* TEST */
+
         let choiceQtt = document.createElement("form")
         choiceQtt.id = "choiceQtt";
         choiceProductDescription.appendChild(choiceQtt);
