@@ -1,9 +1,14 @@
 /* récupération des données du localStorage */
-let addCart = JSON.parse(localStorage.getItem("caméra"));
+let addCart = JSON.parse(localStorage.getItem("camera"));
 console.log(addCart);
 
 /* creation d'une constante relié à la div ayant l'id panier */
-const productCart = document.querySelector("#panier")
+const productCart = document.querySelector("#panier");
+
+/* const del = localStorage.removeItem('caméra');
+function deleteProduct(){
+  del;  
+} */
 
 /* si panier vide message qui s'affiche */
 if(addCart === null){
@@ -16,7 +21,6 @@ if(addCart === null){
 
 } else {
   /* sinon lesproduits s'affichent depuis le localStorage */
-  console.log("pas vide")
   let cartStructure = [];
 
   for (let i = 0; i < addCart.length; i++) {
@@ -26,46 +30,56 @@ if(addCart === null){
         <img src="${addCart[i].img}">    
       </div>
       <div>
-        <h3> ${addCart[i].name} </h3>
+        <h2> ${addCart[i].name} </h2>
+      </div>
+      <div>
+        <h2> ${addCart[i].lenses} </h2>
+      </div>
+      <div>
+        <h2> ${addCart[i].quantity} </h2>
       </div>
       <div>
         <span> ${addCart[i].price} </span>
       </div>
-    </div>
+      <button type="button" onclick="/"> Effacer </button>
+    </div> 
     `;
-    console.log(cartStructure);
   }
   productCart.innerHTML = cartStructure;
-  
-  // if(i === addCart.length){
-  //   /* creation de la structure html dans le panier */
-  //   productCart.innerHTML = cartStructure;
-  // }
 }
 
+/*--------------- VALIDATION DU FORMULAIRE --------------*/
+/* constante correspondant au bouton de confirmation de paiement */
+const btnPayCart = document.querySelector('#payBtn');
+console.log(btnPayCart);
 
+btnPayCart.addEventListener('click', (e) =>{
+  /* on empeche le rechargement de la page et l'envoie du formulaire */
+  e.preventDefault();
 
-/* écouteur d'évènement qui fonctionne lorsque le formulaire est envoyé*/
-document.getElementById('payBtn').addEventListener("submit", function(e){ 
-
-  let erreur;
-
-  /* recuperation de toutes les balises input */
-  let inputs = document.getElementsByTagName('input');
-  /* creation de boucle demandant à ce que tous les champs soient remplis */
-  for (let i = 0; i < inputs.length; i++) {
-    if (!inputs[i].value){
-      erreur = "Veuillez remplir tous les champs";
-      break;
-    }
+  /* données du formulaire et du panier envoyées dans le local storage */
+  const formValues = {    
+    nom: document.querySelector('#nom').value,
+    prenom: document.querySelector('#prenom').value,
+    adresse: document.querySelector('#adresse').value,
+    ville: document.querySelector('#ville').value,
+    email: document.querySelector('#email').value
   }
 
-  if (erreur){
-    e.preventDefault();/* empeche le rechargement de la page et l'envoie du formulaire */
-    document.getElementById('erreur').innerHTML = erreur;
-    return false;
-  } else {
-    alert("commande envoyé");
+  /* données du formulaire dans le localStorage */
+  localStorage.setItem('formulaire', JSON.stringify(localStorage.getItem('formValues')));
+ 
+  /* données du formulaire et des produits placées dans un objet à envoyer vers le serveur */
+  const cartFormToServer = {
+    addCart,
+    formValues 
   }
+  console.log(cartFormToServer);
+
+  /* envoie de l'objet réunissant le formulaire et les produits du panier vers le serveur */
+
+
+
 
 })
+
