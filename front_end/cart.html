@@ -34,14 +34,15 @@
     <div>
     </div>    
   </header>
-<img src="" alt="">
+
   <main>
     <div id="panierContainer">
       <div id="panier">
         <table>
           <thead>
-            <tr>
+            <tr id="panierTitle">
               <th id="product">Produit</th>
+              <th id="lenses">Objectif</th>
               <th id="quantity">Quantité</th>
               <th id="price">Prix</th>
             </tr>
@@ -51,6 +52,7 @@
         </table>
       </div>
     </div>
+
     <div class="contactFormContainer" >
       <div id="erreur"></div>
       <div id="contactForm">      
@@ -70,16 +72,16 @@
               <label for="adresse">Adresse</label>
               <input type="text" id="adresse" name="adress" placeholder="Adresse" required>
             </div>
-            <div>
-              <label for="ville">Ville</label>
-              <input type="text" id="ville" name="city" placeholder="Ville" required>
-            </div>
+          </div>
+          <div>
+            <label for="ville">Ville</label>
+            <input type="text" id="ville" name="city" placeholder="Ville" required>
           </div>
           <div>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Adresse email" required>
           </div>
-          <button type="submit" id="payBtn" value="Confirmation">Procéder au paiement</button>
+          <button type="submit" id="payBtn" value="Confirmation" >Procéder au paiement</button>
         </form>
       </div>
     </div>
