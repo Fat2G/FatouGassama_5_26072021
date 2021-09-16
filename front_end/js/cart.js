@@ -4,7 +4,7 @@ console.log("cart");
 console.log(addCart);
 
 /* creation d'une constante relié à la div ayant l'id panier */
-const productCart = document.querySelector("#panier");
+const productCart = document.querySelector("#cart");
 
 /* si panier vide message qui s'affiche */
 if(addCart === null || addCart == 0){
@@ -35,7 +35,7 @@ if(addCart === null || addCart == 0){
         <h2> ${addCart[i].quantity} </h2>
       </div>
       <div>
-        <span> ${addCart[i].price} </span>
+        <span> ${addCart[i].price + " €"} </span>
       </div>
       <button type="button" class="btnDelete"> Supprimer </button>
     </div> 
@@ -68,10 +68,30 @@ for (let i = 0; i < btnDelete.length; i++) {
 
   })
 }
-
 /* --------- MONTANT TOTAL DU PANIER --------- */
 /* declaration de la variable qui additionne les prix des produits du panier */
-let totalPrice = [];
+let priceTotal = [];
+
+/* creation d'une boucle for afin de regrouper les montants */
+for (let i = 0; i < addCart.length; i++){
+  let priceProduct = addCart[i].price * addCart[i].quantity;
+
+  /* Ajout des prix dans le tableau "priceTotal" */
+  priceTotal.push(priceProduct);
+}
+/* Addition des montants du tableau "priceTotal" */
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const total = priceTotal.reduce(reducer, 0);
+
+/* Affichage du prix total */
+/* creation de la constante "displayTotal" comprenant le code HTML pour la ligne total */
+const displayTotal = `
+<div class="displayTotal">
+  <p> Total de la commande: ${total} € </p>
+</div> `
+
+/* insertion de l'HTML de la constante "displayTotal" dans "productCart" */
+productCart.insertAdjacentHTML("beforeend", displayTotal);
 
 
 /*--------------- VALIDATION DU FORMULAIRE --------------*/

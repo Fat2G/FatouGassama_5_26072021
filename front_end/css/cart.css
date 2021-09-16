@@ -21,21 +21,28 @@
   border-radius:20px;
 }
 #cart{
-  padding: 10px;
+  padding: 20px;
 }
 #cart table{
   width: 80%;
+}
+.displayTotal{
+  font-size: 22px;
+  text-align: center;
+  margin: 25px 0px;
 }
 /* AFFICHAGE PRODUIT */
 #cartStructure{
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
+  margin-top: 20px;
 
 }
 #cartStructure img{
   width: 60%;
   height: auto;
+  border-radius: 15px;
 }
 
 /* FORMULAIRE */
