@@ -13,17 +13,17 @@
   font-size: 22px;
 }
 
-#panierContainer,
+#cartContainer,
 .contactFormContainer{
   margin: 30px auto;
   background-color: #F3E9F1;
   width: 95%;
   border-radius:20px;
 }
-#panier{
+#cart{
   padding: 10px;
 }
-#panier table{
+#cart table{
   width: 80%;
 }
 /* AFFICHAGE PRODUIT */
