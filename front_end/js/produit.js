@@ -93,7 +93,8 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
         button.id = "addCartBtn";
         button.innerHTML = "Ajouter au panier";
         /* creation de la fonction permettant de serializer les données et les stocker dans le localStorage*/
-        button.onclick = function addCart(){          
+        button.onclick = function addCart(){
+          let id = _id;          
           let name = _name;
           let img = _image;          
           let price = _price*.01+"€";
@@ -104,7 +105,7 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
           let qtt = document.getElementById('camQtt');
           let quantity = qtt.options[qtt.selectedIndex].value
           /* variable regroupant toutes les données des variables ci-dessus */
-          let addPrd = {img, name, lenses, quantity, price};
+          let addPrd = {id, img, name, lenses, quantity, price};
 
           /* window.localStorage stocké dans une variable */
           const localStorage = window.localStorage;
@@ -118,6 +119,9 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
           addCart.push(addPrd);
           /* conversion des données en json */
           localStorage.setItem("camera", JSON.stringify(addCart));
+
+          /* message de confirmation */
+          alert('Votre produit a bien été envoyé au panier');
          
         };        
 
