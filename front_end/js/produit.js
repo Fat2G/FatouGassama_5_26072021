@@ -97,7 +97,7 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
           let id = _id;          
           let name = _name;
           let img = _image;          
-          let price = _price*.01+"€";
+          let price = _price*.01;
           /* variable selectionnant l'objectif */
           let el = document.getElementById('camLenses');
           let lenses = el.options[el.selectedIndex].text;
