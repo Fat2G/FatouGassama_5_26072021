@@ -37,23 +37,23 @@ if(addCart === null || addCart == 0){
       <div>
         <span> ${addCart[i].price} </span>
       </div>
-      <button type="button" class="btnDelete"> Effacer </button>
+      <button type="button" class="btnDelete"> Supprimer </button>
     </div> 
     `;
   }
   productCart.innerHTML = cartStructure;
 }
 /* ------------------ BOUTON SUPPRIMER --------------------- */
-/* creation de la variable btnDelete */
+/* declaration de la variable btnDelete */
 let btnDelete = document.querySelectorAll(".btnDelete");
 
 /* creation d'une boucle for pour supprimer la ligne choisie */
-for (let j = 0; j < btnDelete.length; j++) {
-  btnDelete[j].addEventListener("click", (event) => {
+for (let i = 0; i < btnDelete.length; i++) {
+  btnDelete[i].addEventListener("click", (event) => {
     event.preventDefault();
 
     /* selection de l'id que l'on veut supprimer */
-    let idDel = addCart[j].id;
+    let idDel = addCart[i].id;
     console.log(idDel);
 
     /* creation d'un nouveau tableau en utilisant la fonction filter */
@@ -68,6 +68,10 @@ for (let j = 0; j < btnDelete.length; j++) {
 
   })
 }
+
+/* --------- MONTANT TOTAL DU PANIER --------- */
+/* declaration de la variable qui additionne les prix des produits du panier */
+let totalPrice = [];
 
 
 /*--------------- VALIDATION DU FORMULAIRE --------------*/
