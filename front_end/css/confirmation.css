@@ -1,0 +1,25 @@
+#container-confirmation{
+  background-color: #F3E9F1;
+  width: 80%;
+  border-radius: 15px;
+  text-align: center;
+  margin: auto;
+}
+#bloc-confirmation p{
+  font-size:20px;
+  padding-bottom: 15px;
+}
+#bloc-confirmation span{
+  font-weight: bold;
+}
+.title{
+  font-size:26px;
+  margin: 30px;
+  padding-top: 30px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
