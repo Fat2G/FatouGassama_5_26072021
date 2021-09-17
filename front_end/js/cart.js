@@ -160,14 +160,13 @@ btnPayCart.addEventListener('click', (e) =>{
     fetch("http://localhost:3000/api/cameras/order", optToLs)
     .then((response) => { return response.json(); })
     .then((r) => {
-      /* suppression de la clé cameras du localStorage */
-      // localStorage.clear();
       /* creation de la clé orderId */
       localStorage.setItem("orderId", r.orderId);
       /* creation de la clé total */
       localStorage.setItem("totalPrice", total);
       document.location.href = "confirmation.html"; 
     })
+      /* message qui s'afiche si erreur */
       .catch((err) => {
         alert("Il y a eu une erreur : " + err);
       }); 
