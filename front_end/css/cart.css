@@ -47,7 +47,7 @@
 
 /* FORMULAIRE */
 #contactForm{
-  margin: 30px;
+  margin: 15px 30px;
 }
 #contactForm input{
   margin: 10px 5px;
@@ -59,6 +59,11 @@
 }
 .form-row{
   display: flex;
+}
+#error{
+  color: red;
+  padding-top: 20px;
+  padding: 20px 0px 5px 20px;
 }
 /* bouton supprimer et paiement */
 #payBtn,
