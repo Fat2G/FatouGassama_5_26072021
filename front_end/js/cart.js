@@ -156,9 +156,6 @@ btnPayCart.addEventListener('click', (e) =>{
     };
     console.log(optToLs);
 
-    /* Préparation du prix pour l'afficher sur la prochaine page */
-    let confPrice = document.querySelector(".displayTotal").innerHTML;
-
     /* envoie de l'objet réunissant le formulaire et les produits du panier vers le serveur */  
     fetch("http://localhost:3000/api/cameras/order", optToLs)
     .then((response) => { return response.json(); })
@@ -168,8 +165,8 @@ btnPayCart.addEventListener('click', (e) =>{
       /* creation de la clé orderId */
       localStorage.setItem("orderId", r.orderId);
       /* creation de la clé total */
-      localStorage.setItem("total", confPrice);
-      // document.location.href = "confirmation.html"; 
+      localStorage.setItem("totalPrice", total);
+      document.location.href = "confirmation.html"; 
     })
       .catch((err) => {
         alert("Il y a eu une erreur : " + err);
