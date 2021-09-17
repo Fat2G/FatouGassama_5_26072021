@@ -35,7 +35,7 @@ if(addCart === null || addCart == 0){
       <div>
         <span> ${addCart[i].price + " €"} </span>
       </div>
-      <button type="button" class="btnDelete"> Supprimer </button>
+      <button type="button" class="btnDel btnDefault"> Supprimer </button>
     </div> 
     `;
   }
@@ -43,7 +43,7 @@ if(addCart === null || addCart == 0){
 }
 /* ------------------ BOUTON SUPPRIMER --------------------- */
 /* declaration de la variable btnDelete */
-let btnDelete = document.querySelectorAll(".btnDelete");
+let btnDelete = document.querySelectorAll(".btnDel");
 
 /* creation d'une boucle for pour supprimer la ligne choisie */
 for (let i = 0; i < btnDelete.length; i++) {

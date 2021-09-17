@@ -3,7 +3,7 @@
   width: 80%;
   border-radius: 15px;
   text-align: center;
-  margin: auto;
+  margin: 80px auto;
 }
 #bloc-confirmation p{
   font-size:20px;
@@ -17,7 +17,12 @@
   margin: 30px;
   padding-top: 30px;
 }
-
+#return{
+  text-align: center;
+}
+.btnDefault{
+  margin: 0px;
+}
 #footer {
   position: absolute;
   bottom: 0;
