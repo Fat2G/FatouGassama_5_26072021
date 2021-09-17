@@ -1,7 +1,5 @@
 /* récupération des données du localStorage */
 let addCart = JSON.parse(localStorage.getItem("camera"));
-console.log("cart");
-console.log(addCart);
 
 /* creation d'une constante relié à la div ayant l'id panier */
 const productCart = document.querySelector("#cart");
@@ -95,57 +93,87 @@ productCart.insertAdjacentHTML("beforeend", displayTotal);
 
 
 /*--------------- VALIDATION DU FORMULAIRE --------------*/
-/* constante correspondant au bouton de confirmation de paiement */
+/* declaration des variables correspondant aux inputs du formulaire */
+let inputFirstName = document.querySelector('#firstName');
+let inputLastName = document.querySelector('#lastName');
+let inputAddress = document.querySelector('#address');
+let inputCity = document.querySelector('#city');
+let inputEmail = document.querySelector('#email');
+/* declaration de la cariable error */
+let error = document.querySelector('#error');
+
+/* declaration de la constante correspondant au bouton de confirmation de paiement */
 const btnPayCart = document.querySelector('#payBtn');
 
 btnPayCart.addEventListener('click', (e) =>{
   /* on empeche le rechargement de la page et l'envoie du formulaire */
   e.preventDefault();
 
-  /* données du formulaire et du panier envoyées dans le local storage */
-  const formValues = {    
-    lastName: document.querySelector('#lastName').value,
-    firstName: document.querySelector('#firstName').value,
-    address: document.querySelector('#address').value,
-    city: document.querySelector('#city').value,
-    email: document.querySelector('#email').value
-  }
+  /* si les champs ne sont pas remplis, le message d'erreur s'affichera */
+  if (
+    !inputFirstName.value ||
+    !inputLastName.value ||
+    !inputAddress.value ||
+    !inputEmail.value ||
+    !inputEmail.value
+    ) {
+    error.innerHTML = "Veuillez renseigner tous les champs !";
+  } else {
+    /* declaration du tableau productsConfirmed*/
+    let productsConfirmed = [];    
 
-  /* données du formulaire dans le localStorage et stringify de l'objet formValues */
-  localStorage.setItem('formulaire', JSON.stringify(localStorage.getItem('formValues')));
- 
-  /* données du formulaire et des produits placées dans un objet à envoyer vers le serveur */
-  // const cartFormToServer = {
-  //   addCart,
-  //   formValues 
-  // }
+    /* Recuperation des id des produits acheté qui sont dans le localStorage grace a la méthode foreach*/
+    addCart.forEach(camera => {
+      productsConfirmed.push(camera.id)});
 
-  const cartFormToServer = {
-    contact: {
-      lastName: document.querySelector('#lastName').value,
-      firstName: document.querySelector('#firstName').value,
-      address: document.querySelector('#address').value,
-      city: document.querySelector('#city').value,
-      email: document.querySelector('#email').value
-    },
-    products: addCart
-  }
-  console.log(cartFormToServer);
+      console.log("addCart");
+      console.log(addCart);
 
-  /* envoie de l'objet réunissant le formulaire et les produits du panier vers le serveur */
-  const dataToServer = fetch('http://localhost:3000/api/cameras/order',{
-    method: 'POST',
-    /* conversion de l'objet 'cartFormToServer' en chaine de caracteres */
-    body: JSON.stringify('cartFormToServer'),
-    headers: {
-      'Content-type': 'application/json',
-    },
-  })
+    /* données du formulaire et du panier envoyées dans le local storage */
+    let formContacts = {    
+      firstName: inputFirstName.value,
+      lastName: inputLastName.value,
+      address: inputAddress.value,
+      city: inputCity.value,
+      email: inputEmail.value
+    }
+
+    /* données du formulaire dans le localStorage et stringify de l'objet formContacts */
+    localStorage.setItem('formulaire', JSON.stringify(formContacts));
   
+    /* données du formulaire et des produits placées dans un objet à envoyer vers le serveur */
+    let cartOrder = {
+      contact: formContacts,
+      products: productsConfirmed
+    }
+    console.log('cartOrder');
+    console.log(cartOrder);
+    /* creation d'une constante regroupant les valeurs de la requete */
+    const optToLs = {
+      method: "POST",
+      body: JSON.stringify(cartOrder),
+      headers: { "Content-Type": "application/json"},
+    };
+    console.log(optToLs);
+
+    /* Préparation du prix pour l'afficher sur la prochaine page */
+    let confPrice = document.querySelector(".displayTotal").innerHTML;
+
+    /* envoie de l'objet réunissant le formulaire et les produits du panier vers le serveur */  
+    fetch("http://localhost:3000/api/cameras/order", optToLs)
+    .then((response) => { return response.json(); })
+    .then((r) => {
+      /* suppression de la clé cameras du localStorage */
+      // localStorage.clear();
+      /* creation de la clé orderId */
+      localStorage.setItem("orderId", r.orderId);
+      /* creation de la clé total */
+      localStorage.setItem("total", confPrice);
+      // document.location.href = "confirmation.html"; 
+    })
+      .catch((err) => {
+        alert("Il y a eu une erreur : " + err);
+      }); 
+  }
   
-
-
-
-
-})
-
+});
