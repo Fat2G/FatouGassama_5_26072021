@@ -85,21 +85,12 @@ body{
 }
 
 /* INDEX */
-.bannerContainer{
-        position: relative;
-        height: 300px;
-}
 .bannerText{
-        color: #cf19c0;
+        color: #B77189;
         font-weight: 700;
-        font-size: 60px;        
+        font-size: 50px;        
         text-align: center;
-        margin: 100px 0px;
-}
-.banner{
-        position: absolute; 
-        top: -100px;       
-        z-index: -1;       
+        margin: 20px 0px;
 }
 .banner img {
         object-fit: contain;
@@ -159,4 +150,24 @@ body{
 .footer_list li{
         list-style: none;
         margin: 15px 30px;
+}
+
+/* RESPONSIVE */
+/* Responsive laptop */
+@media all and (min-width: 769px) and (max-width: 1200px){
+
+}
+/*  Responsive tablette */
+@media all and (min-width: 481px) and (max-width: 768px){
+
+}
+/* Responsive smartphone */
+@media all and (max-width: 480px){
+        .bannerContainer{
+                
+        }
+        .bannerText{
+                font-size: 20px;
+        }
+
 }
