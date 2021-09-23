@@ -32,7 +32,7 @@
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
   margin-top: 20px;
-
+  border-bottom: #000 solid 1px;
 }
 #cartStructure img{
   width: 60%;
@@ -80,5 +80,23 @@
 .btnDel:hover{
   cursor: pointer;
   box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE */
+@media all and (max-width: 680px){
+  #cartStructure{
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    margin-top: 0px;
+    
+  }
+  #cartStructure img{
+    width: 100%;
+    border-radius: 5px;
+  }
+  .form-row{
+    flex-direction: column;
+  }
 }
 

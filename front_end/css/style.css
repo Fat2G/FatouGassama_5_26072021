@@ -63,8 +63,7 @@ body{
 .index{
   display: flex;
   align-items: center;
-  margin: 0px 25px 0px 0px;
-  padding: 0px 10px 0px 20px;
+  justify-content: center;
   border: 2px solid transparent;
   transition: border 450ms ease-in-out;
 }
@@ -98,7 +97,6 @@ body{
         width: 100%;    
 }
 #articlesContainer{
-        margin: 30px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -153,21 +151,17 @@ body{
 }
 
 /* RESPONSIVE */
-/* Responsive laptop */
-@media all and (min-width: 769px) and (max-width: 1200px){
-
-}
-/*  Responsive tablette */
 @media all and (min-width: 481px) and (max-width: 768px){
-
-}
-/* Responsive smartphone */
-@media all and (max-width: 480px){
-        .bannerContainer{
-                
+        .bannerText{
+                font-size: 30px;        
+                margin: 20px 0px;
         }
+        .bannerText{
+                font-size: 25px;
+        }
+}
+@media all and (max-width: 480px){
         .bannerText{
                 font-size: 20px;
         }
-
 }
