@@ -103,7 +103,7 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
           let lenses = el.options[el.selectedIndex].text;
           /* variable selectionnant la quantité */
           let qtt = document.getElementById('camQtt');
-          let quantity = qtt.options[qtt.selectedIndex].value
+          let quantity = qtt.options[qtt.selectedIndex].value;
           /* variable regroupant toutes les données des variables ci-dessus */
           let addPrd = {id, img, name, lenses, quantity, price};
 
@@ -122,7 +122,6 @@ function product_gen(parent, _image="", _name="", _price="", _description="", _i
 
           /* message de confirmation */
           alert('Votre produit a bien été envoyé au panier');
-         
         };        
 
         choiceBtn.appendChild(button);

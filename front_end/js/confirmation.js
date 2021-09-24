@@ -1,8 +1,6 @@
 /* Récupération de l'id de la commance et du montant total dans localStorage */
 let orderId = localStorage.getItem("orderId");
-console.log(orderId);
 let totalPrice = localStorage.getItem("totalPrice");
-console.log(totalPrice);
 
 /* creation d'une constante relié à la div ayant l'id panier */
 const confirmation = document.querySelector("#bloc-confirmation");

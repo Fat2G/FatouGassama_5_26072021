@@ -38,7 +38,6 @@ function article_gen(parent, _image="", _name="", _price="", _description="", _i
 /* création de la fonction produit cherchant les informations depuis le serveur */
 function product(){
   let articleProduct = document.getElementById('articlesContainer');
-  console.log(articleProduct + "ok");
   
   fetch('http://localhost:3000/api/cameras')
   .then(response => response.json())
