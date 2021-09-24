@@ -52,9 +52,8 @@ for (let i = 0; i < btnDelete.length; i++) {
 
     /* selection de l'id que l'on veut supprimer */
     let idDel = addCart[i].id;
-    console.log(idDel);
 
-    /* creation d'un nouveau tableau en utilisant la fonction filter */
+    /* creation d'un nouveau tableau en utilisant la méthode filter */
     addCart = addCart.filter( elementId => elementId.id !== idDel );
 
     /* renvoie des données dans le localStorage */
@@ -63,7 +62,6 @@ for (let i = 0; i < btnDelete.length; i++) {
     /* creation d'une alerte indiquant la suppression + rafraichissement de la page */
     alert("Le produit a bien été supprimé");
     window.location.reload();
-
   })
 }
 /* --------- MONTANT TOTAL DU PANIER --------- */
@@ -91,7 +89,6 @@ const displayTotal = `
 /* insertion de l'HTML de la constante "displayTotal" dans "productCart" */
 productCart.insertAdjacentHTML("beforeend", displayTotal);
 
-
 /*--------------- VALIDATION DU FORMULAIRE --------------*/
 /* declaration des variables correspondant aux inputs du formulaire */
 let inputFirstName = document.querySelector('#firstName');
@@ -99,7 +96,7 @@ let inputLastName = document.querySelector('#lastName');
 let inputAddress = document.querySelector('#address');
 let inputCity = document.querySelector('#city');
 let inputEmail = document.querySelector('#email');
-/* declaration de la cariable error */
+/* declaration de la variable error */
 let error = document.querySelector('#error');
 
 /* declaration de la constante correspondant au bouton de confirmation de paiement */
@@ -109,25 +106,34 @@ btnPayCart.addEventListener('click', (e) =>{
   /* on empeche le rechargement de la page et l'envoie du formulaire */
   e.preventDefault();
 
+  /* validation de l'input email par l'utilisation d'une expression régulière */
+  const email = inputEmail.value;
+
+  function validateEmail(email) {
+    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return regex.test(String(email).toLowerCase());
+  }
+
   /* si les champs ne sont pas remplis, le message d'erreur s'affichera */
-  if (
+  if (    
     !inputFirstName.value ||
     !inputLastName.value ||
     !inputAddress.value ||
+    !inputCity.value ||
     !inputEmail.value ||
-    !inputEmail.value
+    !validateEmail(email)
+
     ) {
-    error.innerHTML = "Veuillez renseigner tous les champs !";
-  } else {
+    error.innerHTML = "Veuillez renseigner tous les champs correctement !";
+    } else {    
+      console.log("Envoi")
     /* declaration du tableau productsConfirmed*/
     let productsConfirmed = [];    
 
     /* Recuperation des id des produits acheté qui sont dans le localStorage grace a la méthode foreach*/
     addCart.forEach(camera => {
       productsConfirmed.push(camera.id)});
-
-      console.log("addCart");
-      console.log(addCart);
 
     /* données du formulaire et du panier envoyées dans le local storage */
     let formContacts = {    
@@ -137,7 +143,7 @@ btnPayCart.addEventListener('click', (e) =>{
       city: inputCity.value,
       email: inputEmail.value
     }
-
+     
     /* données du formulaire dans le localStorage et stringify de l'objet formContacts */
     localStorage.setItem('formulaire', JSON.stringify(formContacts));
   
@@ -166,10 +172,10 @@ btnPayCart.addEventListener('click', (e) =>{
       localStorage.setItem("totalPrice", total);
       document.location.href = "confirmation.html"; 
     })
-      /* message qui s'afiche si erreur */
-      .catch((err) => {
-        alert("Il y a eu une erreur : " + err);
-      }); 
+    /* message qui s'affiche si erreur */
+    .catch((err) => {
+      alert("Il y a eu une erreur : " + err);
+    }); 
   }
   
 });
