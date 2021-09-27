@@ -152,15 +152,13 @@ btnPayCart.addEventListener('click', (e) =>{
       contact: formContacts,
       products: productsConfirmed
     }
-    console.log('cartOrder');
-    console.log(cartOrder);
+    
     /* creation d'une constante regroupant les valeurs de la requete */
     const optToLs = {
       method: "POST",
       body: JSON.stringify(cartOrder),
       headers: { "Content-Type": "application/json"},
     };
-    console.log(optToLs);
 
     /* envoie de l'objet réunissant le formulaire et les produits du panier vers le serveur */  
     fetch("http://localhost:3000/api/cameras/order", optToLs)
